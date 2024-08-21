@@ -4,13 +4,30 @@ import { MoviesListProps } from "../../Types/AppTypes";
 import { Card } from "antd";
 import "../Movies/Movies.css";
 import { Tag } from "antd";
-const { Meta } = Card;
-
-export const Movies = () => {
+import { IoIosCreate } from "react-icons/io";
+import axios from "axios";
+type TokenProp = {
+  token: string;
+};
+export const Movies = ({ token }: TokenProp) => {
   const [movies, setMovies] = useState<MoviesListProps[]>();
   useEffect(() => {
-    MoviesListCall.get(``, {}).then((res) => setMovies(res.data));
+    MoviesListCall.get(``, {
+      headers: { Authorization: `Bearer ${token}` },
+    }).then((res) => setMovies(res.data));
   }, []);
+
+  const addMovie = () => {
+    axios
+      .post(` http://kamaji2.dev.netbuilder.it/00900000/movies`, {
+        available: null,
+        category: ["7", "10"],
+        director: "Steven Spielberg",
+        title: "Indiana Jones e il tempio maledetto",
+        year: 1984,
+      })
+      .then((res) => console.log(res));
+  };
 
   return (
     <div className="container">
@@ -41,6 +58,9 @@ export const Movies = () => {
                       <Tag color="red">Not Available</Tag>
                     </div>
                   )}
+                </div>
+                <div className="edit" onClick={addMovie}>
+                  <IoIosCreate />
                 </div>
               </Card>
             </li>

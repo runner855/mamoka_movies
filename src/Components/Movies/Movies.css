@@ -17,3 +17,7 @@ li {
 .not_available {
   color: red;
 }
+
+.edit {
+  margin-top: 0.4em;
+}
