@@ -1,31 +1,34 @@
-import React from "react";
+import React, { useEffect } from "react";
 import type { FormProps } from "antd";
-import { Button, Form, Input } from "antd";
-import LoginCall from "../../Api/LoginCall";
+import { Button, Checkbox, Form, Input } from "antd";
 import "../Login/Login.css";
+import LoginCall from "../../Api/LoginCall";
+import { LoginProps, UserData } from "../../Types/AppTypes";
 
 type FieldType = {
   username?: string;
   password?: string;
-  remember?: string;
+  grant_type?: string;
 };
 
-const user = {
+const user: any = {
   username: "dariomilani855@gmail.com",
   password: "manchestercity",
   grant_type: "password",
 };
 
 const onFinish: FormProps<FieldType>["onFinish"] = (values) => {
-  LoginCall.post(``, user).then((response) => console.log(response));
+  LoginCall.get(``, user).then((res) => console.log(res));
+
+  console.log("Success:", values);
 };
 
 const onFinishFailed: FormProps<FieldType>["onFinishFailed"] = (errorInfo) => {
-  console.log("wrong credentials!!:", errorInfo);
+  console.log("Failed:", errorInfo);
 };
 
-export const Login = () => (
-  <div className="form_container">
+export const Login = ({ username, password, grant_type }: FieldType) => (
+  <div>
     <Form
       name="basic"
       labelCol={{ span: 8 }}
