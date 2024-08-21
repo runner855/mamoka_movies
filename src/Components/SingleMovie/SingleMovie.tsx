@@ -5,19 +5,13 @@ import {
   SettingOutlined,
 } from "@ant-design/icons";
 import { Avatar, Card } from "antd";
-import { MoviesData, MoviesListProps } from "../../Types/AppTypes";
+import { MoviesData } from "../../Types/AppTypes";
 
 const { Meta } = Card;
 
-export const SingleMovie = ({ data }: MoviesData) => (
+export const SingleMovie = () => (
   <Card
     style={{ width: 300 }}
-    cover={
-      <img
-        alt="example"
-        src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-      />
-    }
     actions={[
       <SettingOutlined key="setting" />,
       <EditOutlined key="edit" />,

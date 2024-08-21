@@ -9,3 +9,11 @@ li {
   align-content: center;
   justify-content: space-around;
 }
+
+.available {
+  color: greenyellow;
+}
+
+.not_available {
+  color: red;
+}
